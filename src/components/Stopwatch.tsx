@@ -13,6 +13,14 @@ export default function Stopwatch() {
         <button className="pause-button">
           <Image src="/img/pause.svg" width={100} height={100} alt="pause" />
         </button>
+        <button className="restart-button">
+          <Image
+            src="/img/restart.svg"
+            width={100}
+            height={100}
+            alt="restart"
+          />
+        </button>
       </div>
     </div>
   );
