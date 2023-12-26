@@ -7,7 +7,12 @@ export default function Stopwatch() {
         00:00:00
       </span>
       <div className="controls">
-        <Image src="/img/play.svg" width={100} height={100} alt="play" />
+        <button className="play-button">
+          <Image src="/img/play.svg" width={100} height={100} alt="play" />
+        </button>
+        <button className="pause-button">
+          <Image src="/img/pause.svg" width={100} height={100} alt="pause" />
+        </button>
       </div>
     </div>
   );
