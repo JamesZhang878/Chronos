@@ -1,16 +1,13 @@
+import { Button } from "@/components/ui/button";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import React from "react";
-import Image from "next/image";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import React, { useState } from "react";
 
 type PauseModalProps = {
   handleReset: () => void;
@@ -21,31 +18,39 @@ const PauseModal: React.FC<PauseModalProps> = ({
   handleReset,
   handleStartStop,
 }) => {
+  const [open, setOpen] = useState<boolean>(true);
+  const handleClose = () => {
+    setOpen(false);
+    handleStartStop();
+  };
   return (
-    <div>
-      <AlertDialog open={true}>
-        <AlertDialogTrigger>
-          <Image src="/img/play.svg" width={50} height={50} alt="play" />
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Break Time!</AlertDialogTitle>
-            <AlertDialogDescription>
-              Take a quick break before returning to your session.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => handleStartStop()}>
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={() => handleReset()}>
-              New Session
-            </AlertDialogAction>
-            <AlertDialogAction>End Block</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </div>
+    <Dialog open={open} onOpenChange={() => handleClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Break Time!</DialogTitle>
+          <DialogDescription>
+            Take a quick break before returning to your session.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button className="reset-button" onClick={() => handleReset()}>
+            {" "}
+            New Session
+          </Button>
+          <Button
+            className="end-button"
+            onClick={() => console.log("END BLOCK")}
+          >
+            {" "}
+            End Block
+          </Button>
+          <Button className="cancel-button" onClick={() => handleStartStop()}>
+            {" "}
+            Cancel
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 
