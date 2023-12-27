@@ -11,20 +11,21 @@ import {
 } from "@/components/ui/alert-dialog";
 import React from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 
 type PauseModalProps = {
   handleReset: () => void;
+  handleStartStop: () => void;
 };
 
-const PauseModal: React.FC<PauseModalProps> = ({ handleReset }) => {
+const PauseModal: React.FC<PauseModalProps> = ({
+  handleReset,
+  handleStartStop,
+}) => {
   return (
     <div>
       <AlertDialog open={true}>
         <AlertDialogTrigger>
-          <Button>
-            <Image src="/img/play.svg" width={50} height={50} alt="play" />
-          </Button>
+          <Image src="/img/play.svg" width={50} height={50} alt="play" />
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -34,7 +35,9 @@ const PauseModal: React.FC<PauseModalProps> = ({ handleReset }) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel onClick={() => handleStartStop()}>
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction onClick={() => handleReset()}>
               New Session
             </AlertDialogAction>

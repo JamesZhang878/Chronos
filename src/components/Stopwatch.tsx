@@ -3,9 +3,8 @@ import Image from "next/image";
 import styles from "../styles/Stopwatch.module.css";
 
 import PauseModal from "./PauseModal";
-import { PassThrough } from "stream";
 
-export default function Stopwatch() {
+const Stopwatch = () => {
   const [time, setTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
@@ -44,13 +43,20 @@ export default function Stopwatch() {
 
   const chooseButton = () => {
     if (!isRunning) {
-      if (time == 0) {
-        return <Image src="/img/play.svg" width={50} height={50} alt="play" />;
-      } else {
-        return <PauseModal handleReset={() => handleReset()} />;
-      }
+      return <Image src="/img/play.svg" width={50} height={50} alt="play" />;
     } else {
       return <Image src="/img/pause.svg" width={50} height={50} alt="pause" />;
+    }
+  };
+
+  const activateModal = () => {
+    if (!isRunning && time != 0) {
+      return (
+        <PauseModal
+          handleReset={() => handleReset()}
+          handleStartStop={() => handleStartStop()}
+        />
+      );
     }
   };
 
@@ -65,6 +71,9 @@ export default function Stopwatch() {
           <Image src="/img/restart.svg" width={50} height={50} alt="restart" />
         </button>
       </div>
+      {activateModal()}
     </div>
   );
-}
+};
+
+export default Stopwatch;

@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 import { Calendar } from "@/components/ui/calendar";
 
-export default function CalendarDemo() {
+const CalendarDemo = () => {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   useEffect(() => {
@@ -19,4 +19,6 @@ export default function CalendarDemo() {
       className="rounded-md border"
     />
   );
-}
+};
+
+export default CalendarDemo;
