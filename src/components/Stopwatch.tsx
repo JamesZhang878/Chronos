@@ -47,7 +47,7 @@ export default function Stopwatch() {
       if (time == 0) {
         return <Image src="/img/play.svg" width={50} height={50} alt="play" />;
       } else {
-        return <PauseModal />;
+        return <PauseModal handleReset={() => handleReset()} />;
       }
     } else {
       return <Image src="/img/pause.svg" width={50} height={50} alt="pause" />;
