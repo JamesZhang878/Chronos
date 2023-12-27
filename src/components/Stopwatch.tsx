@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Stopwatch.module.css";
 
+import PauseModal from "./PauseModal";
+import { PassThrough } from "stream";
+
 export default function Stopwatch() {
   const [time, setTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
@@ -39,16 +42,24 @@ export default function Stopwatch() {
     setTime(0);
   };
 
+  const chooseButton = () => {
+    if (!isRunning) {
+      if (time == 0) {
+        return <Image src="/img/play.svg" width={50} height={50} alt="play" />;
+      } else {
+        return <PauseModal />;
+      }
+    } else {
+      return <Image src="/img/pause.svg" width={50} height={50} alt="pause" />;
+    }
+  };
+
   return (
     <div className={styles.stopwatch}>
       <span className={styles["time-display"]}>{formatTime(time)}</span>
       <div className={styles.controls}>
         <button className={styles["start-stop"]} onClick={handleStartStop}>
-          {isRunning ? (
-            <Image src="/img/pause.svg" width={50} height={50} alt="pause" />
-          ) : (
-            <Image src="/img/play.svg" width={50} height={50} alt="play" />
-          )}
+          {chooseButton()}
         </button>
         <button className={styles.reset} onClick={handleReset}>
           <Image src="/img/restart.svg" width={50} height={50} alt="restart" />
