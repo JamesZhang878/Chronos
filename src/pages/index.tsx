@@ -11,24 +11,42 @@ export default function Home() {
     <div>
       <Tabs className={styles["TabsRoot"]} defaultValue="timing">
         <TabsList className={styles["TabsList"]}>
+          <TabsTrigger className={styles["TabsTrigger"]} value="analytics">
+            <Image
+              className={styles["TabsIcon"]}
+              src="/img/chart.svg"
+              width={30}
+              height={30}
+              alt="chart"
+            />
+          </TabsTrigger>
           <TabsTrigger className={styles["TabsTrigger"]} value="account">
             <Image
               className={styles["TabsIcon"]}
               src="/img/clock.svg"
-              width={35}
-              height={35}
+              width={30}
+              height={30}
               alt="clock"
             />
           </TabsTrigger>
-          <TabsTrigger className={styles["TabsTrigger"]} value="password">
-            Password
+          <TabsTrigger className={styles["TabsTrigger"]} value="profile">
+            <Image
+              className={styles["TabsIcon"]}
+              src="/img/profile.svg"
+              width={26}
+              height={26}
+              alt="profile"
+            />
           </TabsTrigger>
         </TabsList>
+        <TabsContent className={styles["TabsContent"]} value="analytics">
+          TODO: Add analytics graphs
+        </TabsContent>
         <TabsContent className={styles["TabsContent"]} value="account">
           <Timing />
         </TabsContent>
-        <TabsContent className={styles["TabsContent"]} value="password">
-          Change your password here.
+        <TabsContent className={styles["TabsContent"]} value="profile">
+          TODO: Add: 1. Profile information 2. How-to Guide
         </TabsContent>
       </Tabs>
     </div>
