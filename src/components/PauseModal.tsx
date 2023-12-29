@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import React, { useState } from "react";
+import { getAllBlocks } from "../lib/firebase/firestore";
 
 type PauseModalProps = {
   handleReset: () => void;
@@ -19,10 +20,16 @@ const PauseModal: React.FC<PauseModalProps> = ({
   handleStartStop,
 }) => {
   const [open, setOpen] = useState<boolean>(true);
+
   const handleClose = () => {
     setOpen(false);
     handleStartStop();
   };
+
+  const handleEnd = async () => {
+    getAllBlocks();
+  };
+
   return (
     <Dialog open={open} onOpenChange={() => handleClose()}>
       <DialogContent>
@@ -37,10 +44,7 @@ const PauseModal: React.FC<PauseModalProps> = ({
             {" "}
             New Session
           </Button>
-          <Button
-            className="end-button"
-            onClick={() => console.log("END BLOCK")}
-          >
+          <Button className="end-button" onClick={() => handleEnd()}>
             {" "}
             End Block
           </Button>
