@@ -9,7 +9,7 @@ import {
   messagingSenderId,
   appId,
   measurementId,
-} from "./config";
+} from "../constants/config";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
